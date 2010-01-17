@@ -1,0 +1,14 @@
+This is a behaviour to fix CakePHP's handling of BLOB fields with an Oracle Database.
+
+Outline of how it works:
+
+In model.php:
+    var $actsAs = array('OracleBlob' => array('blob_field1', 'blob_field2'));
+
+On a call to save or find:
+The behaviour checks the fields being saved or found for the fields specified above. If any are found they are removed and stored internally. On a save call, $Model->processData($fieldName, $data) is called to allow further processing. After the main call further calls are done to find/save the BLOBs.
+
+Upgrades to do:
+Let the Behaviour automatically determine BLOB fields.
+Also cope with CLOB and LOB fields (Will be coupled with a slightly re-written datasource).
+Finally - rewrite the datasource to cope with BLOB, CLOB and LOB fields, making this behaviour obsolete.
