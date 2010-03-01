@@ -4,8 +4,10 @@ This is a behaviour to fix CakePHP's handling of LOB fields with an Oracle Datab
 
 Outline of how it works:
 
+Download this package to app/plugins/oracle_lob. 'app/plugins/oracle_lob' should contain this Readme file if you did it correctly.
+
 In model.php:
-    var $actsAs = array('OracleLob' => array('blobs' => array('blob_field'), 'clobs' => array('clob_field')));
+    var $actsAs = array('OracleLob.OracleLob' => array('blobs' => array('blob_field'), 'clobs' => array('clob_field')));
 
 On a call to save or find:
 The behaviour checks the fields being saved or found for the fields specified above. If any are found they are removed and stored internally. On a save call, $Model->processData($fieldName, $data) is called to allow further processing. After the main call further calls are done to find/save the BLOB or CLOBs.
