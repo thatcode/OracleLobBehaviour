@@ -1,3 +1,5 @@
+Written for 1.2.5
+
 This is a behaviour to fix CakePHP's handling of LOB fields with an Oracle Database.
 
 Outline of how it works:
